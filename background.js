@@ -15,7 +15,7 @@ function updateIcon(value = 0) {
     chrome.browserAction.setBadgeText({text:`${value}`});
 }
 
-window.logs = [];
+const logs = [];
 
 if (chrome.runtime && chrome.runtime.onStartup) {
     chrome.runtime.onStartup.addListener(() => {
@@ -29,8 +29,15 @@ chrome.runtime.onMessage.addListener((message) => {
         const data = message.data;
         updateIcon(Math.ceil(data.duration / 1000));
         logs.push(data);
+
+        // save it to local storage
+        chrome.storage.local.set({ logs, })
+
     } else if (message && message.type === 'clearMessage') {
         logs = [];
         updateIcon(0);
+
+        // clear local storage value
+        chrome.storage.local.set({ logs, });
     }
 });
