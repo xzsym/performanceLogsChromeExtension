@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"></head>
+        <title>Performance Logs</title>
+        <style>
+body {
+    width: 400px;
+}
+
+.tabledata {
+    width: 100%;
+}
+
+.tabledata th {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tabledata td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.tabledata tr:nth-child(even){
+    background-color: #f2f2f2
+}
+        </style>
+    </head>
+    <body>
+        <button id="button">Clear History</button>
+        <div id="root"></div>
+    </body>
+    <script src="moment.min.js"></script>
+    <script src="popup.js"></script>
+</html>
