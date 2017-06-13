@@ -19,7 +19,7 @@ const render = (logs) => {
 
     logs.reverse().forEach((log) => {
         const tr = document.createElement('tr');
-        const className = log.duration > 3000 ? 'red' : 'green';
+        const className = log.duration > log.threshold * 1000 ? 'red' : 'green';
         tr.innerHTML = `<td>${log.subtype}</td>
                         <td class="${className}">${log.duration.toFixed()}&nbsp;ms</td>
                         <td>${parseTimestamp(log.timestamp)}</td>`;

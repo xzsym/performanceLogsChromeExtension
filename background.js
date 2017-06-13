@@ -46,11 +46,14 @@ const getThresholdValue = (log) => {
 chrome.runtime.onMessage.addListener((message) => {
     if (message && message.type === 'logMessage') {
         const data = message.data;
-        updateIcon(Math.ceil(data.duration / 1000), getThresholdValue(data));
-        logs.push(data);
+        const threshold = getThresholdValue(data);
+        updateIcon(Math.ceil(data.duration / 1000), threshold);
+        logs.push(Object.assign(data, {
+            threshold,
+        }));
 
         // save it to local storage
-        chrome.storage.local.set({ logs, })
+        chrome.storage.local.set({ logs });
 
     } else if (message && message.type === 'clearMessage') {
         logs = [];
